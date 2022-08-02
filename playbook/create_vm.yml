@@ -1,0 +1,45 @@
+---
+- name: Create vSphere resource 
+  hosts: ansible
+  connection: local
+  gather_facts: no
+  tasks:
+  - name: Create a VM folder on datacenter
+    community.vmware.vcenter_folder:
+      hostname: '{{ vcenter_hostname }}'
+      username: '{{ vcenter_username }}'
+      password: '{{ vcenter_password }}'
+      datacenter_name: '{{ datacenter }}'
+      validate_certs: False
+      folder_name: '{{ folder }}'
+      folder_type: vm
+      state: present
+    register: vm_folder_creation_result
+    delegate_to: localhost
+
+  - name: Create a virtual machine on ESXi
+    vmware_guest:
+      hostname: "{{ vcenter_hostname }}"
+      username: "{{ vcenter_username }}"
+      password: "{{ vcenter_password }}"
+      validate_certs: False
+      name: "{{ hostvars[item]['name'] }}"
+      template: "{{ rhel_image }}"
+      datacenter: "{{ datacenter }}"
+      folder: "{{ datacenter }}/vm/{{ folder }}"
+      state: poweredon
+      customization: 
+        hostname: "{{ hostvars[item]['name']  }}"
+        dns_servers: "{{ dns }}"
+        dns_suffix: "rhdemo.local"
+      networks:
+      - name: "{{ network_portgroup }}"
+        type: static
+        ip: "{{ hostvars[item]['ip_address'] }}"
+        netmask: "{{ netmask }}"
+        gateway: "{{gateway}}"
+        dns_server: "{{dns}}"
+      wait_for_customization: no
+      wait_for_ip_address: no
+    with_items: "{{ query('inventory_hostnames','rhel')  }}"
+    delegate_to: localhost
