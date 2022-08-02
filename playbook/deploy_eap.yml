@@ -1,0 +1,27 @@
+---
+- name: install MongoDB
+  hosts: mongodb1.rhdemo.local
+
+  tasks:
+
+  - name: yum-clean-metadata
+    shell: subscription-manager clean
+
+  - name: add MongoDB repository
+    yum_repository:
+      name: mongodb-org-4.4
+      description: MongoDB Repository Repo
+      baseurl: https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/5.0/x86_64/
+      gpgkey: https://www.mongodb.org/static/pgp/server-5.0.asc
+
+  - name: install mongodb
+    yum:
+      name: mongodb-org
+      state: present
+      update_cache: yes
+
+  - name: Enable MongoDB to run on boot
+    service:
+      name: mongod
+      enabled: yes
+      state: started
