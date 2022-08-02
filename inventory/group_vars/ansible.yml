@@ -1,0 +1,25 @@
+---
+vcenter_hostname: "172.16.15.28"
+vcenter_username: "redhat@vsphere.local"
+vcenter_password: "P@ssw0rd"
+datacenter: "RedHat"
+validate_certs: False
+folder: "eap"
+gateway: "192.168.0.1"
+dns: "192.168.3.32"
+netmask: "255.255.252.0"
+network_portgroup: "Internal Network 101"
+external_netmask: "255.255.255.0"
+external_netmask_length: "24"
+external_gateway: "172.16.15.254"
+localadmin_password: "P@ssw0rd"
+domainadmin: "Administrator@rhdemo.local"
+domainadminpassword: "P@ssw0rd"
+domain_name: "rhdemo.local"
+rhel_image: "rhel8_image"
+
+ansible_connection: local
+# ansible_user: root
+# ansible_ssh_pass: 'r3dh4t1!'
+# ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+# ansible_sudo_pass: 'r3dh4t1!'
