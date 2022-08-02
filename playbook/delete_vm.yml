@@ -1,0 +1,59 @@
+---
+- name: Create vm test
+  hosts: ansible
+  connection: local
+  gather_facts: no
+  tasks:
+  - name: get vms in folder
+    vmware_vm_info:
+      hostname: "{{ vcenter_hostname }}"
+      username: "{{ vcenter_username }}"
+      password: "{{ vcenter_password }}"
+      validate_certs: False
+      folder: "{{ datacenter }}/vm/{{ folder }}"
+    register: vms
+    delegate_to: localhost
+  - debug:
+      msg: "{{ vms | json_query('virtual_machines[*].guest_name') }}"
+
+  - name: poweroff a virtual machine on given ESXi hostname
+    vmware_guest:
+      hostname: "{{ vcenter_hostname }}"
+      username: "{{ vcenter_username }}"
+      password: "{{ vcenter_password }}"
+      validate_certs: False
+      name: "{{ item }}"
+      datacenter: "{{ datacenter }}"
+      folder: "{{ datacenter }}/vm/{{ folder }}"
+      state: poweredoff
+    ignore_errors: yes
+    with_items: "{{ vms | json_query('virtual_machines[*].guest_name') }}"
+    delegate_to: localhost
+
+  - name: delete a virtual machine on given ESXi hostname
+    vmware_guest:
+      hostname: "{{ vcenter_hostname }}"
+      username: "{{ vcenter_username }}"
+      password: "{{ vcenter_password }}"
+      validate_certs: False
+      name: "{{ item }}"
+      datacenter: "{{ datacenter }}"
+      folder: "{{ datacenter }}/vm/{{ folder }}"
+      state: absent
+      wait_for_ip_address: no
+    ignore_errors: yes
+    with_items: "{{ vms | json_query('virtual_machines[*].guest_name') }}"
+    delegate_to: localhost
+
+  - name: Delete a VM folder on given datacenter
+    community.vmware.vcenter_folder:
+      hostname: '{{ vcenter_hostname }}'
+      username: '{{ vcenter_username }}'
+      password: '{{ vcenter_password }}'
+      datacenter_name: '{{ datacenter }}'
+      folder_name: "{{ folder }}"
+      validate_certs: False
+      folder_type: vm
+      state: absent
+    register: vm_folder_deletion_result
+    delegate_to: localhost
