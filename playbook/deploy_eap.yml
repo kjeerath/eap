@@ -22,11 +22,6 @@
       dest: /home/redhat/
     delegate_to: itehost.example.com
 
-  - name: Extract jboss binary file
-    unarchive:
-      src: /home/redhat/jboss-eap-7.4.0.zip
-      dest: /home/redhat/
-      remote_src: yes
 
   - name: copy jdk binary file
     synchronize:
