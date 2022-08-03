@@ -5,7 +5,7 @@
   tasks:
 
   - name: run standalone.sh
-    shell: nohup /home/redhat/jboss-eap-7.4/bin/standalone.sh
+    shell: nohup /home/redhat/jboss-eap-7.4/bin/standalone.sh &
 
   - name: copy war file
     synchronize:
