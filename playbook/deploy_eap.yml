@@ -14,5 +14,5 @@
     synchronize: 
       mode: pull
       src: /home/redhat/a.sh
-      dest: /home/redhat/
+      dest: rsync:/home/redhat/
     delegate_to: itehost.example.com
