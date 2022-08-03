@@ -9,11 +9,7 @@
       dest: /home/redhat/
       remote_src: yes
 
-   - name: run standalone.sh
-    shell: /home/redhat/jboss-eap-7.4/bin/add-user.sh admin r3dh4t1!
 
-  - name: run standalone.sh
-    shell: nohup /home/redhat/jboss-eap-7.4/bin/standalone.sh &
 
   - name: copy war file
     synchronize:
