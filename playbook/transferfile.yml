@@ -17,11 +17,9 @@
       regexp: '^JAVA_HOME'
       line: 'JAVA_HOME=/home/redhat/java-11'
 
-  - name: Set HOME PATH
-    shell: export JAVA_HOME=/home/redhat/java-11
 
   - name: Set HOME PATH
-    shell: export PATH="$JAVA_HOME/bin:$PATH"
+    shell: echo $JAVA_HOME/bin:$PATH >> /tmp/a
 
 
 
