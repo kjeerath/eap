@@ -17,12 +17,18 @@
       regexp: '^JAVA_HOME'
       line: 'JAVA_HOME=/home/redhat/java-11'
 
-  - name: Set JAVA_HOME
+  - name: Set HOME PATH
     lineinfile:
       dest: /etc/environment
       state: present
       regexp: '^PATH'
       line: 'PATH="$JAVA_HOME/bin:$PATH"'
+
+  - name: export java home
+    shell: export JAVA_HOME=/home/redhat/java-11
+
+  - name: export home path
+    shell: export PATH="$JAVA_HOME/bin:$PATH"
 
   
 
