@@ -5,7 +5,13 @@
   tasks:
 
   - name: run standalone.sh
-    shell: /home/redhat/jboss-eap-7.4/bin/standalone.sh
+    shell: nohup /home/redhat/jboss-eap-7.4/bin/standalone.sh
+
+  - name: copy war file
+    synchronize:
+      src: /home/redhat/verify-cluster.war
+      dest: /home/redhat/jboss-eap-7.4/standalone/deployments/
+    delegate_to: itehost.example.com
 
 
 
