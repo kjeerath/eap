@@ -4,8 +4,17 @@
 
   tasks:
 
-  - name: start standalone server
-    shell: /home/redhat/jboss-eap-7.4/bin/standalone.sh
+  - name: copy jboss binary file
+    synchronize:
+      src: /home/redhat/java-11-openjdk-11.0.9.11-1.portable.jdk.el.x86_64.tar.xz
+      dest: /home/redhat/
+    delegate_to: itehost.example.com
+
+  - name: Extract jboss binary file
+    unarchive:
+      src: /home/redhat/java-11-openjdk-11.0.9.11-1.portable.jdk.el.x86_64.tar.xz
+      dest: /home/redhat/
+      remote_src: yes
 
   
 
