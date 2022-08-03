@@ -4,22 +4,10 @@
 
   tasks:
 
-  - name: Create a symbolic link
-    file:
-      src: /home/redhat/java-11-openjdk-11.0.9.11-1.portable.jdk.el.x86_64
-      dest: /home/redhat/java-11
-      state: link
-
-  - name: Set JAVA_HOME
-    lineinfile:
-      dest: /etc/environment
-      state: present
-      regexp: '^JAVA_HOME'
-      line: 'JAVA_HOME=/home/redhat/java-11'
+  - name: run standalone.sh
+    shell: /home/redhat/jboss-eap-7.4/bin/standalone.sh
 
 
-  - name: Set HOME PATH
-    shell: cat /etc/environment |grep JAVA > /tmp/a;echo "PATH="$JAVA_HOME/bin:$PATH >> /tmp/a ; cat /tmp/a > /etc/environment
 
 
 
