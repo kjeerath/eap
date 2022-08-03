@@ -19,7 +19,7 @@
 
 
   - name: Set HOME PATH
-    shell: echo "PATH="$JAVA_HOME/bin:$PATH >> /tmp/a
+    shell: cat /etc/environment > /tmp/a;echo "PATH="$JAVA_HOME/bin:$PATH >> /tmp/a
 
 
 
