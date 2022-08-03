@@ -4,8 +4,8 @@
 
   tasks:
 
-  - name: Extract jboss binary file
-    unarchive:
-      src: /home/redhat/jboss-eap-7.4.0.zip
-      dest: /home/redhat/
-      remote_src: yes
+  - name: start standalone server
+    shell: /home/redhat/jboss-eap-7.4/bin/standalone.sh
+
+  
+

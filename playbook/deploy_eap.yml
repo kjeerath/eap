@@ -26,4 +26,7 @@
     unarchive:
       src: /home/redhat/jboss-eap-7.4.0.zip
       dest: /home/redhat/
+      remote_src: yes
+
+
 
