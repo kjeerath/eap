@@ -22,7 +22,7 @@
       dest: /etc/environment
       state: present
       regexp: '^PATH'
-      line: 'PATH="$JAVA_HOME/bin:$PATH"'
+      line: 'PATH=$JAVA_HOME/bin:$PATH'
 
 
 
