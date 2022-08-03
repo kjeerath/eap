@@ -19,7 +19,7 @@
 
 
   - name: Set HOME PATH
-    shell: echo $JAVA_HOME/bin:$PATH >> /tmp/a
+    shell: echo "PATH="$JAVA_HOME/bin:$PATH >> /tmp/a
 
 
 
