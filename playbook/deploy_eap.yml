@@ -13,6 +13,6 @@
   - name: copy eap file from server 
     synchronize: 
       mode: pull
-      src=/home/ite/a.sh
-      dest=/home/redhat/
+      src: /home/ite/a.sh
+      dest: /home/redhat/
     delegate_to: ansible
