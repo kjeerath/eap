@@ -2,7 +2,7 @@
 - name: start jboss and deploy war file
   hosts: eap1.rhdemo.local
 
-  task: 
+  tasks: 
 
   - name: add admin user
     shell: '/home/redhat/jboss-eap-7.4/bin/add-user.sh admin r3dh4t1!'
