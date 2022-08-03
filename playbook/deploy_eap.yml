@@ -40,6 +40,23 @@
       dest: /home/redhat/
       remote_src: yes
 
+  - name: Create a jdk folder symbolic link
+    file:
+      src: /home/redhat/java-11-openjdk-11.0.9.11-1.portable.jdk.el.x86_64
+      dest: /home/redhat/java-11
+      state: link
+
+  - name: Set JAVA_HOME
+    lineinfile:
+      dest: /etc/environment
+      state: present
+      regexp: '^JAVA_HOME'
+      line: 'JAVA_HOME=/home/redhat/java-11'
+
+
+  - name: export PATH
+    shell: cat /etc/environment |grep JAVA > /tmp/a;echo "PATH="$JAVA_HOME/bin:$PATH >> /tmp/a ; cat /tmp/a > /etc/environment
+
 
 
 
