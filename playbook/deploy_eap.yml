@@ -10,6 +10,12 @@
       block: |
         192.168.3.222  itehost.example.com   
 
+  - name: add eap1 to /etc/hosts
+    lineinfile:
+      path: /etc/hosts
+      regexp: 'eap.rhdemo.local'
+      line: eap1.rhdemo.local
+
   - name: copy eap file from server 
     synchronize: 
       src: /home/redhat/
