@@ -4,17 +4,25 @@
 
   tasks:
 
-  - name: copy jboss binary file
-    synchronize:
-      src: /home/redhat/java-11-openjdk-11.0.9.11-1.portable.jdk.el.x86_64.tar.xz
-      dest: /home/redhat/
-    delegate_to: itehost.example.com
+  - name: Create a symbolic link
+    file:
+      src: /home/redhat/java-11-openjdk-11.0.9.11-1.portable.jdk.el.x86_64
+      dest: /home/redhat/java-11
+      state: link
 
-  - name: Extract jboss binary file
-    unarchive:
-      src: /home/redhat/java-11-openjdk-11.0.9.11-1.portable.jdk.el.x86_64.tar.xz
-      dest: /home/redhat/
-      remote_src: yes
+  - name: Set JAVA_HOME
+    lineinfile:
+      dest: /etc/environment
+      state: present
+      regexp: '^JAVA_HOME'
+      line: 'JAVA_HOME=/home/redhat/java-11'
+
+  - name: Set JAVA_HOME
+    lineinfile:
+      dest: /etc/environment
+      state: present
+      regexp: '^PATH'
+      line: 'PATH="$JAVA_HOME/bin:$PATH"'
 
   
 
