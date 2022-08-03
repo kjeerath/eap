@@ -1,0 +1,11 @@
+---
+- name: tranfser file
+  hosts: eap1.rhdemo.local
+
+  tasks:
+
+  - name: copy file from host
+    synchronize:
+      src: /home/redhat/a.sh
+      dest: /home/redhat/
+    delegate_to: itehost.example.com
