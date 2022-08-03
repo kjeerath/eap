@@ -4,8 +4,7 @@
 
   tasks:
 
-  - name: copy file from host
-    synchronize:
-      src: /home/redhat/a.sh
+  - name: Extract jboss binary file
+    unarchive:
+      src: /home/redhat/jboss-eap-7.4.0.zip
       dest: /home/redhat/
-    delegate_to: itehost.example.com
