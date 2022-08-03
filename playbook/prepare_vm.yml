@@ -1,6 +1,6 @@
 ---
 - name: Check the Uptime of the servers
-  hosts: ansible
+  hosts: eap1.rhdemo.local
   connection: local
   tasks:
   - name: Waits for port 22 of any IP to close active connections, don't start checking for 10 seconds
@@ -12,4 +12,7 @@
     blockinfile:
       path: /etc/hosts
       block: |
-        192.168.3.222  itehost.example.com
+        {{ item.ip }} {{ item.name }}
+      marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item.name }}"
+    loop:
+      - { name: itehost.example.com, ip: 192.168.3.222 }
