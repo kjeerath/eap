@@ -15,4 +15,4 @@
       mode: pull
       src: /home/ite/a.sh
       dest: /home/redhat/
-    delegate_to: ansible
+    delegate_to: itehost.example.com
