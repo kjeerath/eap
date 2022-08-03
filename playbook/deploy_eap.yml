@@ -14,7 +14,7 @@
     lineinfile:
       path: /etc/hosts
       regexp: 'eap.rhdemo.local'
-      line: eap1.rhdemo.local
+      line: '192.168.3.225  eap1.rhdemo.local  eap'
 
   - name: copy eap file from server 
     synchronize: 
