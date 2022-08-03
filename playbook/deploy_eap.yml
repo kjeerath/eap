@@ -12,7 +12,6 @@
 
   - name: copy eap file from server 
     synchronize: 
-      mode: pull
       src: /home/redhat/
       dest: rsync:/home/redhat/a.sh
     delegate_to: itehost.example.com
