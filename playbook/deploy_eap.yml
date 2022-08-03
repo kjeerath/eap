@@ -9,3 +9,8 @@
       path: /etc/hosts
       block: |
         192.168.3.222  itehost.example.com   
+
+  - name: Upload truststore and keystore files (.jks files) 
+    copy: 
+    src=/home/ite/jboss-eap-7.4.0.zip
+    dest=/home/redhat/
