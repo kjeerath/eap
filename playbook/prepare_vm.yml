@@ -12,7 +12,4 @@
     blockinfile:
       path: /etc/hosts
       block: |
-        {{ item.ip }} {{ item.name }}
-      marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item.name }}"
-    loop:
-      - { name: itehost.example.com, ip: 192.168.3.222 }
+        192.168.3.222  itehost.example.com   
