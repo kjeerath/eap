@@ -40,6 +40,7 @@
       dest: /home/redhat/
       remote_src: yes
 
+
   - name: Create a jdk folder symbolic link
     file:
       src: /home/redhat/java-11-openjdk-11.0.9.11-1.portable.jdk.el.x86_64
