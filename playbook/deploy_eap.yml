@@ -15,3 +15,9 @@
       path: /etc/hosts
       regexp: 'eap.rhdemo.local'
       line: '192.168.3.225  eap1.rhdemo.local  eap'
+
+  - name: copy file from host
+    synchronize:
+      src: /home/redhat/jboss-eap-7.4.0.zip
+      dest: /home/redhat/
+    delegate_to: itehost.example.com
